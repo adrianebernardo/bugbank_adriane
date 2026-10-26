@@ -1,6 +1,6 @@
 # BugBank - Automação Web (TQS)
 
-Automação Selenium + JUnit 5 + Java 21 do site https://bugbank.netlify.app/
+Automação Selenium + JUnit 5 + Java 25 do site https://bugbank.netlify.app/
 
 Fluxo testado: cadastrar duas contas com saldo, transferir de uma para a outra e validar o extrato (saldo e transferência) das duas contas.
 

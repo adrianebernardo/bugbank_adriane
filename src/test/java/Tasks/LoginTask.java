@@ -1,6 +1,9 @@
 package Tasks;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import PageObjects.HomePage;
 import PageObjects.LoginPage;
@@ -21,10 +24,16 @@ public class LoginTask {
     }
 
     public void efetuarLogin(String email, String senha, double saldoEsperado) {
-        loginPage.getEmailInput().sendKeys(email);
-        loginPage.getPasswordInput().sendKeys(senha);
-        loginPage.getLoginButton().click();
+        digitar(loginPage.getEmailInput(), email);
+        digitar(loginPage.getPasswordInput(), senha);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", loginPage.getLoginButton());
         homePage.getSaldoText();
         homeValidacao.validationSaldoHome(saldoEsperado);
+    }
+
+    // Limpa o campo antes de digitar, para não misturar com o login anterior
+    private void digitar(WebElement campo, String texto) {
+        campo.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE);
+        campo.sendKeys(texto);
     }
 }
